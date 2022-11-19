@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 // Register
+Route::get('/register', [RegisterController::class, 'index'])->name('register-index');
+Route::post('/register', [RegisterController::class, 'store'])->name('register-store');
 
 // Login
+Route::get('/login', [LoginController::class, 'index'])->name('login-index');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login-auth');
 
+// Beranda
+Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda-index');

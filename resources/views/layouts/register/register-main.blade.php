@@ -4,22 +4,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title }}</title>
+    <title>Secret Land | {{ $title }}</title>
     @include('partials.css.css')
 </head>
 
 <body>
-    {{-- layouts --}}
-    @include('partials.welcome.navbar-welcome')
-
-    {{-- Breaks --}}
-    @include('partials.break')
 
     {{-- content --}}
     @yield('content')
 
-    {{-- footer --}}
-    @include('partials.footer')
+    {{-- Breaks --}}
+    @include('partials.break')
 
     {{-- javascript --}}
     @include('partials.js.js')
