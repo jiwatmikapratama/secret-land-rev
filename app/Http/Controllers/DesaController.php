@@ -37,7 +37,33 @@ class DesaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required|max:20',
+            'gambar' => 'required|image',
+            'fk_id_kabupaten' => 'required',
+            'deskripsi' => 'required|string|min:50',
+            'address' => 'required|string|max:100',
+        ]);
+
+        $nm = $request->gambar;
+        $nameFile = $nm->getClientOriginalName();
+
+        $desas = new Desa;
+        $desas->nama = $request->nama;
+        $desas->gambar = $nameFile;
+
+        $nm->move(public_path() . '/daerah', $nameFile);
+        $desas->fk_id_kabupaten = $request->fk_id_kabupaten;
+        $desas->deskripsi = $request->deskripsi;
+        $desas->address = $request->address;
+        $desas->save();
+
+
+        if ($desas) {
+            return redirect()->route('dashboard-index')->with(['success' => 'Data Desa Berhasil Ditambahkan!']);
+        } else {
+            return redirect()->route('dashboard-index')->with(['error' => 'Data Desa Gagal Ditambahkan!']);
+        }
     }
 
     /**
@@ -59,7 +85,9 @@ class DesaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $desas = Desa::with('kabupaten')->findOrFail($id);
+        $kabupatens = Kabupaten::where('id', '!=', $desas->fk_id_kabupaten)->get(['id', 'nama']);
+        return view('admin.desa.desa-edit', ['DesaList' => $desas, 'KabupatenList' => $kabupatens, "title" => "Edit Desa",]);
     }
 
     /**
@@ -71,7 +99,32 @@ class DesaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required|max:20',
+            'gambar' => 'required|image',
+            'fk_id_kabupaten' => 'required',
+            'deskripsi' => 'required|string|min:50',
+            'address' => 'required|string|max:100',
+        ]);
+
+        $desas = Desa::with('kabupaten')->findOrFail($id);
+        $nm = $request->gambar;
+        $nameFile = $nm->getClientOriginalName();
+
+        $desas->nama = $request->nama;
+        $desas->gambar = $nameFile;
+
+        $nm->move(public_path() . '/daerah', $nameFile);
+        $desas->fk_id_kabupaten = $request->fk_id_kabupaten;
+        $desas->deskripsi = $request->deskripsi;
+        $desas->address = $request->address;
+        $desas->save();
+
+        if ($desas) {
+            return redirect()->route('dashboard-index')->with(['success' => 'Data Desa Berhasil Diubah!']);
+        } else {
+            return redirect()->route('dashboard-index')->with(['error' => 'Data Desa Gagal Diubah!']);
+        }
     }
 
     /**

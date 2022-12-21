@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Desa;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +14,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.index', ['title' => 'Dashboard']);
+        $desas = Desa::with('kabupaten')->get();
+        return view('admin.index', ['DesaList' => $desas, 'title' => 'Dashboard']);
     }
 
     /**

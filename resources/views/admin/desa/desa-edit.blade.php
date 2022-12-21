@@ -1,17 +1,14 @@
 @extends('layouts.admin.admin-main')
 
 @section('content')
-    <br>
-    <br>
-    <br>
+    @include('partials.break')
     <div class="container-fluid">
         <div class="row">
             @include('partials.admin.sidebar-admin')
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h2>Tambah Data Desa</h2>
+                    <h2>Edit Data Desa</h2>
                 </div>
 
                 <div class="container">
@@ -19,12 +16,13 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-body">
-                                    <form method="POST" action="desa" enctype="multipart/form-data">
+                                    <form method="POST" action="/desa/{{ $DesaList->id }}" enctype="multipart/form-data">
                                         @csrf
+                                        @method('PUT')
                                         <div class="form-group">
                                             <label>Nama Desa</label>
                                             <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                                name="nama" value="{{ old('nama') }}" required>
+                                                name="nama" value="{{ $DesaList->nama }}" required>
 
                                             @error('nama')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -34,7 +32,8 @@
                                         <div class="form-group">
                                             <label>Gambar</label>
                                             <input type="file" class="form-control @error('gambar') is-invalid @enderror"
-                                                name="gambar" value="{{ old('gambar') }}" required>
+                                                name="gambar" value="{{ $DesaList->gambar }}" required>
+
                                             @error('gambar')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -42,15 +41,16 @@
                                         <br>
                                         <div class="form-group">
                                             <label>Kabupaten</label>
-                                            <select id="fk_id_kabupaten" name="kabupaten"
+                                            <select id="fk_id_kabupaten"
                                                 class="form-control @error('kabupaten') is-invalid @enderror"
                                                 name="fk_id_kabupaten" required>
-                                                <option value="{{ old('fk_id_kabupaten') }}">--Pilih--</option>
-
+                                                <option value="{{ $DesaList->kabupaten->id }}">
+                                                    {{ $DesaList->kabupaten->nama }}</option>
                                                 @foreach ($KabupatenList as $item)
                                                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                                 @endforeach
                                             </select>
+
                                             @error('kabupaten')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -59,7 +59,8 @@
                                         <div class="form-group">
                                             <label>Deskripsi</label>
                                             <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" cols="30" rows="10"
-                                                required>{{ old('deskripsi') }}</textarea>
+                                                required>{{ $DesaList->deskripsi }}</textarea>
+
                                             @error('deskripsi')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -68,7 +69,7 @@
                                             <label>Alamat</label>
                                             <input type="text"
                                                 class="form-control @error('address') is-invalid @enderror" name="address"
-                                                value="{{ old('address') }}" required>
+                                                value="{{ $DesaList->address }}" required>
 
                                             @error('address')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -78,7 +79,9 @@
                                         <br><br>
                                         <div class="form-group">
                                             <button class="btn btn-primary" type="submit">Simpan</button>
+                                            <a href="/dashboard" class="btn btn-secondary">Batal</a>
                                         </div>
+
                                     </form>
                                 </div>
                             </div>

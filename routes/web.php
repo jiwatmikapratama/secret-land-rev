@@ -41,4 +41,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 // Admin data desa
 Route::get('/desa-add', [DesaController::class, 'create'])->name('desa-add')->middleware('auth');
-Route::post('/desa', [DashboardController::class, 'store']);
+Route::post('/desa', [DesaController::class, 'store']);
+Route::get('/dashboard/desa-edit/{id}', [DesaController::class, 'edit'])->name('desa-edit')->middleware('auth');
+Route::put('/desa/{id}', [DesaController::class, 'update']);

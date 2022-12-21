@@ -18,7 +18,18 @@
                     </form>
                 </div>
 
-
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @elseif(session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @else
+                @endif
 
                 <table class="table">
                     <thead class="table-dark">
@@ -35,21 +46,21 @@
                     </thead>
                     <tbody>
                         <tr>
-                            {{-- @foreach ($DashboardList as $data)
+                            @foreach ($DesaList as $data)
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $data->name }}</td>
+                                <td>{{ $data->nama }}</td>
                                 <td>
                                     <img src="{{ asset('daerah/' . $data->gambar) }}"
                                         style="max-height: 50px; max-width: 50px;" alt="">
                                 </td>
-                                <td>{{ $data->daerah['nama'] }}</td>
+                                <td>{{ $data->kabupaten->nama }}</td>
                                 <td>{{ $data->deskripsi }}</td>
                                 <td>{{ $data->address }}</td>
-                                <td><a class="btn btn-warning" href="dashboard-edit/{{ $data->id }}">edit</a>
-                                    <a class="btn btn-danger" href="/dashboard/{{ $data->id }}">delete</a>
+                                <td><a class="btn btn-warning" href="/dashboard/desa-edit/{{ $data->id }}">edit</a>
+                                    <a class="btn btn-danger" href="/dashboard/desa/{{ $data->id }}">delete</a>
                                 </td>
                         </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
                 <hr>
