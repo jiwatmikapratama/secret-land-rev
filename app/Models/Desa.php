@@ -17,8 +17,8 @@ class Desa extends Model
         return $this->belongsTo(Kabupaten::class, 'fk_id_kabupaten', 'id');
     }
 
-    public function detail()
+    public function wisata()
     {
-        return $this->hasMany(Detail::class, 'fk_id_dash', 'id');
+        return $this->hasMany(Wisata::class, 'fk_id_desa', 'id');
     }
 }

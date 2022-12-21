@@ -36,6 +36,8 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 // Beranda
 Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda-index')->middleware('auth');
+Route::get('/beranda-detail/{id}', [BerandaController::class, 'show'])->name('beranda-detail')->middleware('auth');;
+
 
 // Admin dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-index')->middleware('auth');

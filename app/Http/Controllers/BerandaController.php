@@ -49,7 +49,8 @@ class BerandaController extends Controller
      */
     public function show($id)
     {
-        //
+        $desas = Desa::with(['wisata'])->findOrFail($id);
+        return view('beranda.beranda-detail', ['DesaList' => $desas, 'title' => 'Beranda']);
     }
 
     /**
