@@ -51,9 +51,10 @@
             <nav class="navbar1">
                 <ul>
                     <li><a class="nav-link scrollto active " href="/">ALL</a></li>
-                    <li><a class="nav-link scrollto " href="">Denpasar</a></li>
-                    <li><a class="nav-link scrollto " href="">Buleleng</a></li>
-                    <li><a class="nav-link scrollto " href="">Bangli</a></li>
+                    @foreach ($KabupatenList as $kabupaten)
+                        <li><a class="nav-link scrollto {{ $title === 'Kabupaten' ? 'active' : '' }} "
+                                href="">{{ $kabupaten->nama }}</a></li>
+                    @endforeach
                 </ul>
 
             </nav>
@@ -65,13 +66,13 @@
     {{-- card --}}
     <div class="container b">
         <div class="row">
-            @foreach ($listDesa as $desa)
+            @foreach ($DesaList as $desa)
                 <div class="col">
                     <div class="card" style="width: 404px;">
                         <img src="{{ asset('daerah/' . $desa->gambar) }}" style="height: 400px; width:400px;"
                             class="card-img" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title" style="font-weight:bold">{{ $desa->name }}</h5>
+                            <h5 class="card-title" style="font-weight:bold">{{ $desa->nama }}</h5>
                             <p class="card-text">{{ Str::of($desa->deskripsi)->limit(250) }}</p>
                             <a href="beranda-detail/{{ $desa->id }}" class="btn btn-primary">Cek Detail</a>
                         </div>

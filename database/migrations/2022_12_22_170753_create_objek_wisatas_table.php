@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('objek_wisatas', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('gambar');
+            $table->bigInteger('fk_id_desa')->unsigned();
             $table->timestamps();
+            $table->foreign('fk_id_desa')->references('id')->on('desas');
+            $table->text('deskripsi');
+            $table->text('address')->nullable();
         });
     }
 

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desa;
-use App\Models\Kabupaten;
+use App\Models\Wisata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class DesaController extends Controller
+class WisataController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,8 +27,8 @@ class DesaController extends Controller
      */
     public function create()
     {
-        $kabupatens = Kabupaten::select('id', 'nama')->get();
-        return view('admin.desa.desa-add', ['KabupatenList' => $kabupatens, "title" => "Tambah Desa",]);
+        $desas = Desa::select('id', 'nama')->get();
+        return view('admin.wisata.wisata-add', ['DesaList' => $desas, "title" => "Tambah Wisata",]);
     }
 
     /**
@@ -42,7 +42,7 @@ class DesaController extends Controller
         $this->validate($request, [
             'nama' => 'required|max:20',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'fk_id_kabupaten' => 'required',
+            'fk_id_desa' => 'required',
             'deskripsi' => 'required|string|min:50',
             'address' => 'required|string|max:100',
         ]);
@@ -50,21 +50,21 @@ class DesaController extends Controller
         $nm = $request->gambar;
         $nameFile = $nm->getClientOriginalName();
 
-        $desas = new Desa;
-        $desas->nama = $request->nama;
-        $desas->gambar = $nameFile;
+        $wisatas = new Wisata;
+        $wisatas->nama = $request->nama;
+        $wisatas->gambar = $nameFile;
 
-        $nm->move(public_path() . '/daerah', $nameFile);
-        $desas->fk_id_kabupaten = $request->fk_id_kabupaten;
-        $desas->deskripsi = $request->deskripsi;
-        $desas->address = $request->address;
-        $desas->save();
+        $nm->move(public_path() . '/wisata', $nameFile);
+        $wisatas->fk_id_desa = $request->fk_id_desa;
+        $wisatas->deskripsi = $request->deskripsi;
+        $wisatas->address = $request->address;
+        $wisatas->save();
 
 
-        if ($desas) {
-            return redirect()->route('dashboard-index')->with(['success' => 'Data Desa Berhasil Ditambahkan!']);
+        if ($wisatas) {
+            return redirect()->route('dashboard-index')->with(['success' => 'Data Wisata Berhasil Ditambahkan!']);
         } else {
-            return redirect()->route('dashboard-index')->with(['error' => 'Data Desa Gagal Ditambahkan!']);
+            return redirect()->route('dashboard-index')->with(['error' => 'Data Wisata Gagal Ditambahkan!']);
         }
     }
 
@@ -87,9 +87,9 @@ class DesaController extends Controller
      */
     public function edit($id)
     {
-        $desas = Desa::with('kabupaten')->findOrFail($id);
-        $kabupatens = Kabupaten::where('id', '!=', $desas->fk_id_kabupaten)->get(['id', 'nama']);
-        return view('admin.desa.desa-edit', ['DesaList' => $desas, 'KabupatenList' => $kabupatens, "title" => "Edit Desa",]);
+        $wisatas = Wisata::with('desa')->findOrFail($id);
+        $desas = Desa::where('id', '!=', $wisatas->fk_id_desa)->get(['id', 'nama']);
+        return view('admin.wisata.wisata-edit', ['WisataList' => $wisatas, 'DesaList' => $desas, "title" => "Edit Wisata",]);
     }
 
     /**
@@ -104,28 +104,28 @@ class DesaController extends Controller
         $this->validate($request, [
             'nama' => 'required|max:20',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'fk_id_kabupaten' => 'required',
+            'fk_id_desa' => 'required',
             'deskripsi' => 'required|string|min:50',
             'address' => 'required|string|max:100',
         ]);
 
-        $desas = Desa::with('kabupaten')->findOrFail($id);
+        $wisatas = Wisata::with('desa')->findOrFail($id);
         $nm = $request->gambar;
         $nameFile = $nm->getClientOriginalName();
 
-        $desas->nama = $request->nama;
-        $desas->gambar = $nameFile;
+        $wisatas->nama = $request->nama;
+        $wisatas->gambar = $nameFile;
 
-        $nm->move(public_path() . '/daerah', $nameFile);
-        $desas->fk_id_kabupaten = $request->fk_id_kabupaten;
-        $desas->deskripsi = $request->deskripsi;
-        $desas->address = $request->address;
-        $desas->save();
+        $nm->move(public_path() . '/wisata', $nameFile);
+        $wisatas->fk_id_desa = $request->fk_id_desa;
+        $wisatas->deskripsi = $request->deskripsi;
+        $wisatas->address = $request->address;
+        $wisatas->save();
 
-        if ($desas) {
-            return redirect()->route('dashboard-index')->with(['success' => 'Data Desa Berhasil Diubah!']);
+        if ($wisatas) {
+            return redirect()->route('dashboard-index')->with(['success' => 'Data Wisata Berhasil Diubah!']);
         } else {
-            return redirect()->route('dashboard-index')->with(['error' => 'Data Desa Gagal Diubah!']);
+            return redirect()->route('dashboard-index')->with(['error' => 'Data Wisata Gagal Diubah!']);
         }
     }
 
@@ -137,14 +137,14 @@ class DesaController extends Controller
      */
     public function destroy($id)
     {
-        $desas = DB::table('desas')->where('id', $id)->get();
+        $wisatas = DB::table('objek_wisatas')->where('id', $id)->get();
 
-        if ($desas[0]->fk_id_kabupaten) {
+        if ($wisatas[0]->fk_id_desa) {
 
-            Storage::delete('/daerah/' . $desas[0]->fk_id_kabupaten);
+            Storage::delete('/wisata/' . $wisatas[0]->fk_id_desa);
         }
-        if (DB::table('desas')->where('id', $id)->delete()) {
-            return redirect()->route('dashboard-index')->with(['success' => 'Data Desa Berhasil Dihapus!']);
+        if (DB::table('objek_wisatas')->where('id', $id)->delete()) {
+            return redirect()->route('dashboard-index')->with(['success' => 'Data Wisata Berhasil Dihapus!']);
         }
     }
 }

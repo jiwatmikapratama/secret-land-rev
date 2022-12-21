@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desa;
+use App\Models\Kabupaten;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
@@ -14,8 +15,9 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        $desas = Desa::all();
-        return view('beranda.index', ['listDesa' => $desas, 'title' => 'Beranda']);
+        $desas = Desa::orderBy('created_at', 'desc')->get();
+        $kabupatens = Kabupaten::all();
+        return view('beranda.index', ['DesaList' => $desas, 'KabupatenList' => $kabupatens, 'title' => 'Beranda']);
     }
 
     /**

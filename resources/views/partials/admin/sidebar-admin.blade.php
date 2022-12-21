@@ -13,12 +13,6 @@
                     Beranda
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/detail">
-                    <span data-feather="layers" class="align-text-bottom"></span>
-                    Detail
-                </a>
-            </li>
         </ul>
 
         <h6
@@ -36,7 +30,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/detail-add">
+                <a class="nav-link" href="/wisata-add">
                     <span data-feather="file-text" class="align-text-bottom"></span>
                     Data Wisata
                 </a>

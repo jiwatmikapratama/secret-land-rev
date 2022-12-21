@@ -6,6 +6,7 @@ use App\Http\Controllers\DesaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\WisataController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -43,4 +44,12 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/desa-add', [DesaController::class, 'create'])->name('desa-add')->middleware('auth');
 Route::post('/desa', [DesaController::class, 'store']);
 Route::get('/dashboard/desa-edit/{id}', [DesaController::class, 'edit'])->name('desa-edit')->middleware('auth');
-Route::put('/desa/{id}', [DesaController::class, 'update']);
+Route::put('/dashboard/desa/{id}', [DesaController::class, 'update']);
+Route::get('/dashboard/desa/{id}', [DesaController::class, 'destroy'])->name('desa-delete');
+
+// Admin data wisata
+Route::get('/wisata-add', [WisataController::class, 'create'])->name('wisata-add')->middleware('auth');
+Route::post('/wisat', [WisataController::class, 'store']);
+Route::get('/dashboard/wisata-edit/{id}', [WisataController::class, 'edit'])->name('wisata-edit')->middleware('auth');
+Route::put('/dashboard/wisata/{id}', [WisataController::class, 'update']);
+Route::get('/dashboard/wisata/{id}', [WisataController::class, 'destroy'])->name('wisata-delete');

@@ -54,10 +54,12 @@
                                         style="max-height: 50px; max-width: 50px;" alt="">
                                 </td>
                                 <td>{{ $data->kabupaten->nama }}</td>
-                                <td>{{ $data->deskripsi }}</td>
+                                <td style="max-height: 300px; max-width: 50px; overflow:hidden;white-space: nowrap;">
+                                    {{ $data->deskripsi }}</td>
                                 <td>{{ $data->address }}</td>
                                 <td><a class="btn btn-warning" href="/dashboard/desa-edit/{{ $data->id }}">edit</a>
-                                    <a class="btn btn-danger" href="/dashboard/desa/{{ $data->id }}">delete</a>
+                                    <a class="btn btn-danger" href="/dashboard/desa/{{ $data->id }}"
+                                        onclick="return confirm('Anda yakin ingin menghapus?');">delete</a>
                                 </td>
                         </tr>
                         @endforeach
@@ -90,21 +92,23 @@
                     </thead>
                     <tbody>
                         <tr>
-                            {{-- @foreach ($DetailList as $item)
+                            @foreach ($WisataList as $item)
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->nama }}</td>
                                 <td>
-                                    <img src="{{ asset('daerah/' . $item->gambar) }}"
+                                    <img src="{{ asset('wisata/' . $item->gambar) }}"
                                         style="max-height: 50px; max-width: 50px;" alt="">
                                 </td>
-                                <td>{{ $item->dashboard['name'] }}</td>
-                                <td>{{ $item->deskripsi }}</td>
+                                <td>{{ $item->desa->nama }}</td>
+                                <td style="max-height: 300px; max-width: 50px; overflow:hidden;white-space: nowrap;">
+                                    {{ $item->deskripsi }}</td>
                                 <td>{{ $item->address }}</td>
-                                <td><a class="btn btn-warning" href="detail-edit/{{ $item->id }}">edit</a>
-                                    <a class="btn btn-danger" href="/detail/{{ $item->id }}">delete</a>
+                                <td><a class="btn btn-warning" href="/dashboard/wisata-edit/{{ $item->id }}">edit</a>
+                                    <a class="btn btn-danger" href="/dashboard/wisata/{{ $item->id }}"
+                                        onclick="return confirm('Anda yakin ingin menghapus?');">delete</a>
                                 </td>
                         </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             @endsection

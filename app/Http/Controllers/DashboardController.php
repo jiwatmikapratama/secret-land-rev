@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desa;
+use App\Models\Wisata;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,7 +16,8 @@ class DashboardController extends Controller
     public function index()
     {
         $desas = Desa::with('kabupaten')->get();
-        return view('admin.index', ['DesaList' => $desas, 'title' => 'Dashboard']);
+        $wisatas = Wisata::with('desa')->get();
+        return view('admin.index', ['DesaList' => $desas, 'WisataList' => $wisatas, 'title' => 'Dashboard']);
     }
 
     /**

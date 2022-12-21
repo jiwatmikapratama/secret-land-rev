@@ -42,8 +42,8 @@
                                         <br>
                                         <div class="form-group">
                                             <label>Kabupaten</label>
-                                            <select id="fk_id_kabupaten" name="kabupaten"
-                                                class="form-control @error('kabupaten') is-invalid @enderror"
+                                            <select id="fk_id_kabupaten"
+                                                class="form-control @error('fk_id_kabupaten') is-invalid @enderror"
                                                 name="fk_id_kabupaten" required>
                                                 <option value="{{ old('fk_id_kabupaten') }}">--Pilih--</option>
 
@@ -51,7 +51,7 @@
                                                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('kabupaten')
+                                            @error('fk_id_kabupaten')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -78,6 +78,7 @@
                                         <br><br>
                                         <div class="form-group">
                                             <button class="btn btn-primary" type="submit">Simpan</button>
+                                            <a href="/dashboard" class="btn btn-secondary">Batal</a>
                                         </div>
                                     </form>
                                 </div>
