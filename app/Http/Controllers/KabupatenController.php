@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Desa;
-use Illuminate\Http\Request;
+use App\Models\Kabupaten;
+use App\Http\Requests\StoreKabupatenRequest;
+use App\Http\Requests\UpdateKabupatenRequest;
 
-class BerandaController extends Controller
+class KabupatenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,7 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        $desas = Desa::all();
-        return view('beranda.index', ['listDesa' => $desas, 'title' => 'Beranda']);
+        //
     }
 
     /**
@@ -31,10 +31,10 @@ class BerandaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreKabupatenRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreKabupatenRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class BerandaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Kabupaten  $kabupaten
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Kabupaten $kabupaten)
     {
         //
     }
@@ -53,10 +53,10 @@ class BerandaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Kabupaten  $kabupaten
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Kabupaten $kabupaten)
     {
         //
     }
@@ -64,11 +64,11 @@ class BerandaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateKabupatenRequest  $request
+     * @param  \App\Models\Kabupaten  $kabupaten
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateKabupatenRequest $request, Kabupaten $kabupaten)
     {
         //
     }
@@ -76,10 +76,10 @@ class BerandaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Kabupaten  $kabupaten
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Kabupaten $kabupaten)
     {
         //
     }

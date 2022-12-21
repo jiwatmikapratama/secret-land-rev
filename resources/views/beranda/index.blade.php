@@ -54,8 +54,6 @@
                     <li><a class="nav-link scrollto " href="">Denpasar</a></li>
                     <li><a class="nav-link scrollto " href="">Buleleng</a></li>
                     <li><a class="nav-link scrollto " href="">Bangli</a></li>
-
-
                 </ul>
 
             </nav>
@@ -67,15 +65,15 @@
     {{-- card --}}
     <div class="container b">
         <div class="row">
-            @foreach ($DashboardList as $da)
+            @foreach ($listDesa as $desa)
                 <div class="col">
                     <div class="card" style="width: 404px;">
-                        <img src="{{ asset('daerah/' . $da->gambar) }}" style="height: 400px; width:400px;" class="card-img"
-                            alt="...">
+                        <img src="{{ asset('daerah/' . $desa->gambar) }}" style="height: 400px; width:400px;"
+                            class="card-img" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title" style="font-weight:bold">{{ $da->name }}</h5>
-                            <p class="card-text">{{ Str::of($da->deskripsi)->limit(250) }}</p>
-                            <a href="beranda-detail/{{ $da->id }}" class="btn btn-primary">Cek Detail</a>
+                            <h5 class="card-title" style="font-weight:bold">{{ $desa->name }}</h5>
+                            <p class="card-text">{{ Str::of($desa->deskripsi)->limit(250) }}</p>
+                            <a href="beranda-detail/{{ $desa->id }}" class="btn btn-primary">Cek Detail</a>
                         </div>
                     </div>
                 </div>

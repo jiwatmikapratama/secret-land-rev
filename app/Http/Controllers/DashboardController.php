@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Desa;
 use Illuminate\Http\Request;
 
-class BerandaController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        $desas = Desa::all();
-        return view('beranda.index', ['listDesa' => $desas, 'title' => 'Beranda']);
+        return view('admin.index', ['title' => 'Dashboard']);
     }
 
     /**

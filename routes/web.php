@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DesaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +22,23 @@ use Illuminate\Support\Facades\Route;
 
 // Welcome
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/home', [BerandaController::class, 'index'])->name('home')->middleware('auth');
 
 // Register
-Route::get('/register', [RegisterController::class, 'index'])->name('register-index');
+Route::get('/register', [RegisterController::class, 'index'])->name('register-index')->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->name('register-store');
 
 // Login
-Route::get('/login', [LoginController::class, 'index'])->name('login-index');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login-auth');
+Route::post('/logout', [LoginController::class, 'logout']);
 
 // Beranda
-Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda-index');
+Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda-index')->middleware('auth');
+
+// Admin dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-index')->middleware('auth');
+
+// Admin data desa
+Route::get('/desa-add', [DesaController::class, 'create'])->name('desa-add')->middleware('auth');
+Route::post('/desa', [DashboardController::class, 'store']);

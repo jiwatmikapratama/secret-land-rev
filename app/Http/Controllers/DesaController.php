@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desa;
+use App\Models\Kabupaten;
 use Illuminate\Http\Request;
 
-class BerandaController extends Controller
+class DesaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,7 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        $desas = Desa::all();
-        return view('beranda.index', ['listDesa' => $desas, 'title' => 'Beranda']);
+        //
     }
 
     /**
@@ -25,7 +25,8 @@ class BerandaController extends Controller
      */
     public function create()
     {
-        //
+        $kabupatens = Kabupaten::select('id', 'nama')->get();
+        return view('admin.desa.desa-add', ['KabupatenList' => $kabupatens, "title" => "Tambah Desa",]);
     }
 
     /**

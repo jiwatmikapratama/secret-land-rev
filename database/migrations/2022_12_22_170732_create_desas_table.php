@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('desas', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('gambar');
+            $table->bigInteger('fk_id_kabupaten')->unsigned();
             $table->timestamps();
+            $table->foreign('fk_id_kabupaten')->references('id')->on('kabupatens');
+            $table->text('deskripsi');
+            $table->text('address')->nullable();
         });
     }
 
