@@ -17,7 +17,8 @@ class DesaController extends Controller
      */
     public function index()
     {
-        //
+        $desas = Desa::paginate(10);
+        return response()->json(['data' => $desas]);
     }
 
     /**
@@ -66,6 +67,9 @@ class DesaController extends Controller
         } else {
             return redirect()->route('dashboard-index')->with(['error' => 'Data Desa Gagal Ditambahkan!']);
         }
+
+        // API
+        return response()->json(['data' => $desas]);
     }
 
     /**
@@ -76,7 +80,10 @@ class DesaController extends Controller
      */
     public function show($id)
     {
-        //
+        $desas = Desa::paginate(10);
+
+        // API
+        return response()->json(['data' => $desas]);
     }
 
     /**
@@ -127,6 +134,9 @@ class DesaController extends Controller
         } else {
             return redirect()->route('dashboard-index')->with(['error' => 'Data Desa Gagal Diubah!']);
         }
+
+        // API
+        return response()->json(['data' => $desas]);
     }
 
     /**
@@ -145,6 +155,8 @@ class DesaController extends Controller
         }
         if (DB::table('desas')->where('id', $id)->delete()) {
             return redirect()->route('dashboard-index')->with(['success' => 'Data Desa Berhasil Dihapus!']);
+            // API
+            return response()->json(['massege' => 'desa deleted!']);
         }
     }
 }
