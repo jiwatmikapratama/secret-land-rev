@@ -14,31 +14,13 @@
                             @foreach ($DesaList->wisata as $das)
                                 <h3>{{ $loop->iteration }}. Wisata {{ $das->nama }}</h3>
 
-                                <img src="{{ asset('daerah/' . $das->gambar) }}" style="height: auto; width: 100%;"
+                                <img src="{{ asset('wisata/' . $das->gambar) }}" style="height: auto; width: 100%;"
                                     alt="">
 
                                 <br><br>
                                 <p style="text-align: justify;">{{ $das->deskripsi }}</p>
                             @endforeach
                         </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-            <!-- menu kanan -->
-            <div class="col-md-4 px-3">
-                <div class="menu-kanan" style="position: sticky; top: 20px;">
-                    <div class="kalender border-bottom">
-                        <iframe
-                            src="https://calendar.google.com/calendar/embed?src=adiaksa%40undiksha.ac.id&ctz=Asia%2FMakassar"
-                            style="border: 0" width="100%" height="260" frameborder="0" scrolling="no"></iframe>
-                    </div>
-                    <div class="map mt-2 border-bottom">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1010295.996606638!2d114.51106531102594!3d-8.453713789473323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd141d3e8100fa1%3A0x24910fb14b24e690!2sBali!5e0!3m2!1sen!2sid!4v1639068139544!5m2!1sen!2sid"
-                            width="100%" height="160" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>

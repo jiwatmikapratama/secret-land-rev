@@ -17,7 +17,7 @@ class BerandaController extends Controller
     {
         $desas = Desa::orderBy('created_at', 'desc')->get();
         $kabupatens = Kabupaten::all();
-        return view('beranda.index', ['DesaList' => $desas, 'KabupatenList' => $kabupatens, 'title' => 'Beranda']);
+        return view('beranda.index', ['DesaList' => $desas, 'KabupatenList' => $kabupatens, 'title' => 'Beranda', 'keyword' => '']);
     }
 
     /**
@@ -85,5 +85,33 @@ class BerandaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $kabupatens = Kabupaten::all();
+        if ($request->has('search')) {
+            $desas = Desa::where('nama', 'LIKE', '%' . $request->search . '%')->get();
+        } else {
+            $desas = Desa::all();
+        }
+        return view('beranda.index', ['DesaList' => $desas, 'KabupatenList' => $kabupatens, 'title' => 'Hasil Pencarian Terkait', 'keyword' => $request->search]);
+    }
+
+    public function filter(Request $request)
+    {
+        $kabupatens = Kabupaten::all();
+        if ($request->has('kabupaten_filter')) {
+            $desas = Desa::where('fk_id_kabupaten', $request->kabupaten_filter)->get();
+        } else {
+            $desas = Desa::all();
+        }
+        return view('beranda.index', ['DesaList' => $desas, 'KabupatenList' => $kabupatens, 'title' => 'Hasil Pencarian Terkait', 'keyword' => $request->search]);
+    }
+
+    public function kabupaten(Request $request, $id)
+    {
+        $kabupatens = Kabupaten::with(['desa'])->findOrFail($id);
+        return view('beranda.index', ['KabupatenList' => $kabupatens, 'title' => 'Beranda']);
     }
 }

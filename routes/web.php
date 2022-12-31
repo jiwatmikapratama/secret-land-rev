@@ -23,7 +23,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 // Welcome
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-Route::get('/home', [BerandaController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/home', [BerandaController::class, 'index'])->name('home');
 
 // Register
 Route::get('/register', [RegisterController::class, 'index'])->name('register-index')->middleware('guest');
@@ -35,9 +35,10 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login-aut
 Route::post('/logout', [LoginController::class, 'logout']);
 
 // Beranda
-Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda-index')->middleware('auth');
-Route::get('/beranda-detail/{id}', [BerandaController::class, 'show'])->name('beranda-detail')->middleware('auth');;
-
+Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda-index');
+Route::get('/beranda-detail/{id}', [BerandaController::class, 'show'])->name('beranda-detail');
+Route::get('/beranda', [BerandaController::class, 'search'])->name('beranda-search');
+// Route::get('/beranda', [BerandaController::class, 'filter'])->name('beranda-filter');
 
 // Admin dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-index')->middleware('auth');
@@ -51,7 +52,7 @@ Route::get('/dashboard/desa/{id}', [DesaController::class, 'destroy'])->name('de
 
 // Admin data wisata
 Route::get('/wisata-add', [WisataController::class, 'create'])->name('wisata-add')->middleware('auth');
-Route::post('/wisat', [WisataController::class, 'store']);
+Route::post('/objek_wisata', [WisataController::class, 'store']);
 Route::get('/dashboard/wisata-edit/{id}', [WisataController::class, 'edit'])->name('wisata-edit')->middleware('auth');
 Route::put('/dashboard/wisata/{id}', [WisataController::class, 'update']);
 Route::get('/dashboard/wisata/{id}', [WisataController::class, 'destroy'])->name('wisata-delete');

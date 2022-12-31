@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('gambar');
             $table->bigInteger('fk_id_desa')->unsigned();
             $table->timestamps();
-            $table->foreign('fk_id_desa')->references('id')->on('desas');
+            $table->foreign('fk_id_desa')->references('id')->on('desas')->onDelete('cascade');
             $table->text('deskripsi');
             $table->text('address')->nullable();
         });

@@ -150,8 +150,7 @@ class DesaController extends Controller
         $desas = DB::table('desas')->where('id', $id)->get();
 
         if ($desas[0]->fk_id_kabupaten) {
-
-            Storage::delete('/daerah/' . $desas[0]->fk_id_kabupaten);
+            Storage::delete('daerah/' . $desas[0]->fk_id_kabupaten);
         }
         if (DB::table('desas')->where('id', $id)->delete()) {
             return redirect()->route('dashboard-index')->with(['success' => 'Data Desa Berhasil Dihapus!']);

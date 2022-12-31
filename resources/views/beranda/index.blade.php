@@ -52,8 +52,10 @@
                 <ul>
                     <li><a class="nav-link scrollto active " href="/">ALL</a></li>
                     @foreach ($KabupatenList as $kabupaten)
-                        <li><a class="nav-link scrollto {{ $title === 'Kabupaten' ? 'active' : '' }} "
-                                href="">{{ $kabupaten->nama }}</a></li>
+                        <li>
+                            <a class="nav-link scrollto {{ $title === 'Kabupaten' ? 'active' : '' }} "
+                                href="beranda/{{ $kabupaten->id }}">{{ $kabupaten->nama }}</a>
+                        </li>
                     @endforeach
                 </ul>
 
@@ -64,7 +66,44 @@
     {{-- endnavb --}}
 
     {{-- card --}}
+
     <div class="container b">
+        <div class="row">
+            <div class="col-md-3">
+                <form class="d-flex ms-auto" action="beranda-search" method="GET">
+                    <input class="form-control me-1" name="search" type="search" placeholder="Search" aria-label="Search"
+                        value="{{ $keyword != '' ? $keyword : ($keyword = '') }}">
+                    <button class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <form class="d-flex ms-auto" action="/beranda" method="GET">
+
+                    <select id="" class="form-select" name="kabupaten_filter">
+                        <option>Kabupaten</option>
+                        @foreach ($KabupatenList as $kabupaten)
+                            <option value="{{ $kabupaten->nama }}">{{ $kabupaten->nama }}</option>
+                        @endforeach
+                    </select>
+                    <a href="/beranda" class="btn btn-primary">Filter</a>
+
+                </form>
+            </div>
+            <div class="col-md-3">
+                <form class="d-flex ms-auto" action="beranda" method="GET">
+                    <input class="form-control me-1" name="search" type="search" placeholder="Search" aria-label="Search"
+                        value="{{ $keyword != '' ? $keyword : ($keyword = '') }}">
+                    <button class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+
+
+        <form class="d-flex ms-auto" action="beranda" method="GET">
+            <input class="form-control me-1" name="search" type="search" placeholder="Search" aria-label="Search"
+                value="{{ $keyword != '' ? $keyword : ($keyword = '') }}">
+            <button class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i></button>
+        </form>
         <div class="row">
             @foreach ($DesaList as $desa)
                 <div class="col">

@@ -20,7 +20,7 @@
                     </p>
                 </div>
                 <div class="tombol mt-5">
-                    <a href="#" class="button rounded-pill shadow tebel-sedang">DOWNLOAD</a>
+                    <a href="/beranda" class="button rounded-pill shadow tebel-sedang">JELAJAHI</a>
                 </div>
             </div>
         </div>
