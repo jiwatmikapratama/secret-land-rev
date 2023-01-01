@@ -17,7 +17,22 @@ class KategoriSeeder extends Seeder
         $kategoris = [
             [
                 'nama' => 'Pantai'
-            ]
+            ],
+            [
+                'nama' => 'Gunung'
+            ],
+            [
+                'nama' => 'Alam'
+            ],
+            [
+                'nama' => 'Buatan'
+            ],
+            [
+                'nama' => 'Kuliner'
+            ],
+            [
+                'nama' => 'Hidden'
+            ],
         ];
         \DB::table('kategoris')->insert($kategoris);
     }

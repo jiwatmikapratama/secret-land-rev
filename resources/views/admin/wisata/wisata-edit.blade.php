@@ -58,6 +58,23 @@
                                         </div>
                                         <br>
                                         <div class="form-group">
+                                            <label>Kategori</label>
+                                            <select id="fk_id_kategori"
+                                                class="form-control @error('fk_id_kategori') is-invalid @enderror"
+                                                name="fk_id_kategori" required>
+                                                <option value="{{ $WisataList->kategori->id }}">
+                                                    {{ $WisataList->kategori->nama }}</option>
+                                                @foreach ($kategoriList as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                @endforeach
+                                            </select>
+
+                                            @error('kategori')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
                                             <label>Deskripsi</label>
                                             <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" cols="30" rows="10"
                                                 required>{{ $WisataList->deskripsi }}</textarea>

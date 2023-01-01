@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desa;
+use App\Models\Kategori;
 use App\Models\Wisata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +29,9 @@ class WisataController extends Controller
     public function create()
     {
         $desas = Desa::select('id', 'nama')->get();
-        return view('admin.wisata.wisata-add', ['DesaList' => $desas, "title" => "Tambah Wisata",]);
+        $kategoris = Kategori::select('id', 'nama')->get();
+
+        return view('admin.wisata.wisata-add', ['DesaList' => $desas, 'KategoriList' => $kategoris, "title" => "Tambah Wisata",]);
     }
 
     /**

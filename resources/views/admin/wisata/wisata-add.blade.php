@@ -54,6 +54,21 @@
                                             @error('fk_id_kabupaten')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
+                                        </div><br>
+                                        <div class="form-group">
+                                            <label>Kategori</label>
+                                            <select id="fk_id_kategori"
+                                                class="form-control @error('fk_id_kategori') is-invalid @enderror"
+                                                name="fk_id_kategori" required>
+                                                <option value="{{ old('fk_id_kategori') }}">--Pilih--</option>
+
+                                                @foreach ($KategoriList as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('fk_id_kategori')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <br>
                                         <div class="form-group">

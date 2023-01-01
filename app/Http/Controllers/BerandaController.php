@@ -19,9 +19,10 @@ class BerandaController extends Controller
     {
         $wisatas = Wisata::orderBy('created_at', 'desc')->simplePaginate(4);
         $desas = Desa::orderBy('created_at', 'desc')->simplePaginate(4);
+        $kategoris = Kategori::all();
         $kabupatens = Kabupaten::all();
 
-        return view('beranda.index', ['DesaList' => $desas, 'WisataList' => $wisatas, 'KabupatenList' => $kabupatens, 'title' => 'Beranda', 'keyword' => '']);
+        return view('beranda.index', ['DesaList' => $desas, 'WisataList' => $wisatas, 'KabupatenList' => $kabupatens, 'KategoriList' => $kategoris, 'title' => 'Beranda', 'keyword' => '']);
     }
 
     /**

@@ -20,7 +20,8 @@ return new class extends Migration
             $table->bigInteger('fk_id_desa')->unsigned();
             $table->timestamps();
             $table->foreign('fk_id_desa')->references('id')->on('desas')->onDelete('cascade');
-            
+            $table->bigInteger('fk_id_kategori')->unsigned();
+            $table->foreign('fk_id_kategori')->references('id')->on('kategoris');
             $table->text('deskripsi');
             $table->text('address')->nullable();
         });

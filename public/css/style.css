@@ -611,3 +611,23 @@ header{
   text-shadow: 0 0 1px rgba(0,0,0,0.5);
   z-index: 999;
 }
+
+.tombol {
+  color: #fff;
+  outline: 1px solid rgba(255, 255, 255);
+  border-radius: 30px;
+  background-color: transparent;
+  width: 100px;
+  height: 40px;
+  text-decoration: none;
+}
+
+.tombol a{
+  color: #fff;
+  text-decoration: none;
+}
+
+.tombol:hover{
+  color: #000000;
+  background-color: white;
+}

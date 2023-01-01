@@ -29,28 +29,13 @@
 
                     <div class="row" data-aos="fade-up">
                         <div class="col">
-                            <div class="card1" style="width: 110px;">
-                                <img src="" style="height: 20px; width:20px;" class="card-img" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Pantai</h5>
-                                </div>
-                            </div>
+                            <button class="btn"></button>
                         </div>
                         <div class="col">
-                            <div class="card1" style="width: 110px;">
-                                <img src="" style="height: 20px; width:20px;" class="card-img" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Gunung</h5>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="col">
-                            <div class="card1" style="width: 110px;">
-                                <img src="" style="height: 20px; width:20px;" class="card-img" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Hidden</h5>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

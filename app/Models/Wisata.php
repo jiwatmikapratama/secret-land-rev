@@ -15,4 +15,9 @@ class Wisata extends Model
     {
         return $this->belongsTo(Desa::class, 'fk_id_desa', 'id');
     }
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'fk_id_wisata', 'id');
+    }
 }

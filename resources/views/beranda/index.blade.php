@@ -28,29 +28,17 @@
                 <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
 
                     <div class="row" data-aos="fade-up">
-                        <div class="col">
-                            <div class="card1" style="width: 110px;">
-                                <img src="" style="height: 20px; width:20px;" class="card-img" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Pantai</h5>
-                                </div>
+                        @foreach ($KategoriList as $kategori)
+                            <div class="col">
+                                <button class="btn tombol"><a href="">{{ $kategori->nama }}</a></button>
                             </div>
+                        @endforeach
+
+                        <div class="col">
+
                         </div>
                         <div class="col">
-                            <div class="card1" style="width: 110px;">
-                                <img src="" style="height: 20px; width:20px;" class="card-img" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Gunung</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card1" style="width: 110px;">
-                                <img src="" style="height: 20px; width:20px;" class="card-img" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Hidden</h5>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
