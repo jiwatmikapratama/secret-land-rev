@@ -3,7 +3,6 @@
 @section('content')
     @include('partials.break')
     <div class="container pt-5">
-        <a href="/beranda" class="btn btn-primary">Kembali</a>
         <div class="row g-0 pt">
             <div class="col-md-8 border-right">
 

@@ -13,16 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('objek_wisatas', function (Blueprint $table) {
+        Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('gambar');
-            $table->bigInteger('fk_id_desa')->unsigned();
             $table->timestamps();
-            $table->foreign('fk_id_desa')->references('id')->on('desas')->onDelete('cascade');
-            
-            $table->text('deskripsi');
-            $table->text('address')->nullable();
         });
     }
 
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('objek_wisatas');
+        Schema::dropIfExists('kategoris');
     }
 };

@@ -61,8 +61,6 @@
                 </div>
                 <button id="btn" class="w-100 btn btn-lg btn-primary login" type="submit"><a href="/beranda"></a>
                     {{ __('Login') }}</button>
-
-
             </form>
             <small class="d-block text-start mt-6">Belum punya akun ? <a href="/register">Register</a></small>
         </main>

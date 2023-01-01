@@ -11,7 +11,7 @@
             </div>
             <div class="header-form2">
                 <h2>Pilih Daerah & Destinasi Wisata</h2>
-                <form action="/beranda-search" method="GET">
+                <form action="/beranda" method="GET">
                     <input type="search" name="search" class="form-control2" placeholder="search">
                     <button class="btn btn-outline-light" type="submit"><i class="fa fa-search"></i></button>
                 </form>
@@ -83,23 +83,20 @@
                     @endforeach
                 </div>
             </div>
-
-            @include('partials.break')
-
             {{-- Wisata --}}
             <div class="section-title">
-                <h2>REKOMENDASI DESA</h2>
-                <p>Desa yang cocok untuk anda kunjungi</p>
+                <h2>REKOMENDASI WISATA</h2>
+                <p>Wisata yang cocok untuk anda kunjungi</p>
                 <hr>
                 <div class="row d" data-aos="fade-up">
-                    @foreach ($DesaList as $desa)
+                    @foreach ($WisataList as $wisata)
                         <div class="col">
-                            <a href="beranda-detail/{{ $desa->id }}">
+                            <a href="beranda-detail/{{ $wisata->id }}">
                                 <div class="card2">
-                                    <img src="{{ asset('daerah/' . $desa->gambar) }}" class="card-image2" alt="...">
+                                    <img src="{{ asset('daerah/' . $wisata->gambar) }}" class="card-image2" alt="...">
                                     <div class="card-body2">
-                                        <h5 class="card-titlet" style="font-weight:bold;"> {{ $desa->nama }}</h5>
-                                        <h5 style="font-size:15px;">{{ $desa->kabupaten->nama }}</h5>
+                                        <h5 class="card-titlet" style="font-weight:bold;"> {{ $wisata->nama }}</h5>
+                                        <h5 style="font-size:15px;">{{ $wisata->desa->nama }}</h5>
                                         {{-- <p class="card-text">{{ Str::of($wisata->deskripsi)->limit(20) }}</p> --}}
                                     </div>
                                 </div>

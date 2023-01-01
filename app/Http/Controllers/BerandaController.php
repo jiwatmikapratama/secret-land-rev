@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Desa;
 use App\Models\Kabupaten;
+use App\Models\Kategori;
+use App\Models\Wisata;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
@@ -15,9 +17,11 @@ class BerandaController extends Controller
      */
     public function index()
     {
+        $wisatas = Wisata::orderBy('created_at', 'desc')->get();
         $desas = Desa::orderBy('created_at', 'desc')->get();
         $kabupatens = Kabupaten::all();
-        return view('beranda.index', ['DesaList' => $desas, 'KabupatenList' => $kabupatens, 'title' => 'Beranda', 'keyword' => '']);
+
+        return view('beranda.index', ['DesaList' => $desas, 'WisataList'=>$wisatas, 'KabupatenList' => $kabupatens, 'title' => 'Beranda', 'keyword' => '']);
     }
 
     /**
@@ -91,11 +95,11 @@ class BerandaController extends Controller
     {
         $kabupatens = Kabupaten::all();
         if ($request->has('search')) {
-            $desas = Desa::where('nama', 'LIKE', '%' . $request->search . '%')->get();
+            $wisatas = Wisata::where('nama', 'LIKE', '%' . $request->search . '%')->get();
         } else {
-            $desas = Desa::all();
+            $wisatas = Wisata::all();
         }
-        return view('beranda.index', ['DesaList' => $desas, 'KabupatenList' => $kabupatens, 'title' => 'Hasil Pencarian Terkait', 'keyword' => $request->search]);
+        return view('beranda.beranda-search', ['WisataList' => $wisatas, 'KabupatenList' => $kabupatens, 'title' => 'Hasil Pencarian Terkait', 'keyword' => $request->search]);
     }
 
     public function filter(Request $request)
@@ -106,7 +110,7 @@ class BerandaController extends Controller
         } else {
             $desas = Desa::all();
         }
-        return view('beranda.index', ['DesaList' => $desas, 'KabupatenList' => $kabupatens, 'title' => 'Hasil Pencarian Terkait', 'keyword' => $request->search]);
+        return view('beranda.beranda-search', ['DesaList' => $desas, 'KabupatenList' => $kabupatens, 'title' => 'Hasil Pencarian Terkait', 'keyword' => $request->search]);
     }
 
     public function kabupaten(Request $request, $id)

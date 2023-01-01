@@ -15,9 +15,7 @@
     {{-- content --}}
     @yield('content')
 
-    {{-- Breaks --}}
-    @include('partials.break')
-
+    @include('partials.footer')
     {{-- javascript --}}
     @include('partials.js.js')
 </body>

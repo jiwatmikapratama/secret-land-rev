@@ -37,7 +37,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 // Beranda
 Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda-index');
 Route::get('/beranda-detail/{id}', [BerandaController::class, 'show'])->name('beranda-detail');
-Route::get('/beranda', [BerandaController::class, 'search'])->name('beranda-search');
+Route::get('/beranda-search', [BerandaController::class, 'search'])->name('beranda-search');
 // Route::get('/beranda', [BerandaController::class, 'filter'])->name('beranda-filter');
 
 // Admin dashboard
