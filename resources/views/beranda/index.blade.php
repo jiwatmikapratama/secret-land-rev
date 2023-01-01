@@ -81,12 +81,25 @@
                             </a>
                         </div>
                     @endforeach
+
+
+                </div>
+
+                <div class="col-md-3 pull-right mt-3" style="">
+                    {{ $WisataList->links() }}
                 </div>
             </div>
+            {{-- <nav aria-label="Page navigation example">
+                <ul class="pagination">
+
+
+                    <li class="page-item"></li>
+                </ul>
+            </nav> --}}
 
             @include('partials.break')
 
-            {{-- Wisata --}}
+            {{-- Desa --}}
             <div class="section-title">
                 <h2>REKOMENDASI DESA</h2>
                 <p>Desa yang cocok untuk anda kunjungi</p>

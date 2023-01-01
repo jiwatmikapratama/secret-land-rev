@@ -83,20 +83,22 @@
                     @endforeach
                 </div>
             </div>
-            {{-- Wisata --}}
+            @include('partials.break')
+
+            {{-- Desa --}}
             <div class="section-title">
-                <h2>REKOMENDASI WISATA</h2>
-                <p>Wisata yang cocok untuk anda kunjungi</p>
+                <h2>REKOMENDASI DESA</h2>
+                <p>Desa yang cocok untuk anda kunjungi</p>
                 <hr>
                 <div class="row d" data-aos="fade-up">
-                    @foreach ($WisataList as $wisata)
+                    @foreach ($DesaList as $desa)
                         <div class="col">
-                            <a href="beranda-detail/{{ $wisata->id }}">
+                            <a href="beranda-detail/{{ $desa->id }}">
                                 <div class="card2">
-                                    <img src="{{ asset('daerah/' . $wisata->gambar) }}" class="card-image2" alt="...">
+                                    <img src="{{ asset('daerah/' . $desa->gambar) }}" class="card-image2" alt="...">
                                     <div class="card-body2">
-                                        <h5 class="card-titlet" style="font-weight:bold;"> {{ $wisata->nama }}</h5>
-                                        <h5 style="font-size:15px;">{{ $wisata->desa->nama }}</h5>
+                                        <h5 class="card-titlet" style="font-weight:bold;"> {{ $desa->nama }}</h5>
+                                        <h5 style="font-size:15px;">{{ $desa->kabupaten->nama }}</h5>
                                         {{-- <p class="card-text">{{ Str::of($wisata->deskripsi)->limit(20) }}</p> --}}
                                     </div>
                                 </div>
@@ -105,6 +107,7 @@
                     @endforeach
                 </div>
             </div>
+
 
 
 

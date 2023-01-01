@@ -17,11 +17,11 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        $wisatas = Wisata::orderBy('created_at', 'desc')->get();
+        $wisatas = Wisata::orderBy('created_at', 'desc')->simplePaginate(4);
         $desas = Desa::orderBy('created_at', 'desc')->get();
         $kabupatens = Kabupaten::all();
 
-        return view('beranda.index', ['DesaList' => $desas, 'WisataList'=>$wisatas, 'KabupatenList' => $kabupatens, 'title' => 'Beranda', 'keyword' => '']);
+        return view('beranda.index', ['DesaList' => $desas, 'WisataList' => $wisatas, 'KabupatenList' => $kabupatens, 'title' => 'Beranda', 'keyword' => '']);
     }
 
     /**
@@ -94,12 +94,13 @@ class BerandaController extends Controller
     public function search(Request $request)
     {
         $kabupatens = Kabupaten::all();
+        $desas = Desa::all();
         if ($request->has('search')) {
             $wisatas = Wisata::where('nama', 'LIKE', '%' . $request->search . '%')->get();
         } else {
             $wisatas = Wisata::all();
         }
-        return view('beranda.beranda-search', ['WisataList' => $wisatas, 'KabupatenList' => $kabupatens, 'title' => 'Hasil Pencarian Terkait', 'keyword' => $request->search]);
+        return view('beranda.beranda-search', ['WisataList' => $wisatas, 'DesaList' => $desas, 'KabupatenList' => $kabupatens, 'title' => 'Hasil Pencarian Terkait', 'keyword' => $request->search]);
     }
 
     public function filter(Request $request)
