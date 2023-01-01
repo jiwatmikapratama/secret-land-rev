@@ -82,7 +82,11 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="col-md-3 pull-right mt-3" style="">
+                    {{ $WisataList->links() }}
+                </div>
             </div>
+
             @include('partials.break')
 
             {{-- Desa --}}
@@ -105,6 +109,9 @@
                             </a>
                         </div>
                     @endforeach
+                </div>
+                <div class="col-md-3 pull-right mt-3" style="">
+                    {{ $DesaList->links() }}
                 </div>
             </div>
 

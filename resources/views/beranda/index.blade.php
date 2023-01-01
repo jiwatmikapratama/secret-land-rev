@@ -89,13 +89,6 @@
                     {{ $WisataList->links() }}
                 </div>
             </div>
-            {{-- <nav aria-label="Page navigation example">
-                <ul class="pagination">
-
-
-                    <li class="page-item"></li>
-                </ul>
-            </nav> --}}
 
             @include('partials.break')
 
@@ -119,6 +112,9 @@
                             </a>
                         </div>
                     @endforeach
+                </div>
+                <div class="col-md-3 pull-right mt-3" style="">
+                    {{ $DesaList->links() }}
                 </div>
             </div>
 
