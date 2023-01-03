@@ -630,3 +630,7 @@ header{
   color: #000000;
   background-color: white;
 }
+
+.tombol a:hover{
+  color: #000000;
+}
