@@ -95,13 +95,15 @@ class BerandaController extends Controller
     public function search(Request $request)
     {
         $kabupatens = Kabupaten::all();
-        $desas = Desa::all();
+        // $desas = Desa::all();
+        $desas = Desa::orderBy('created_at', 'desc')->simplePaginate(4);
+        $kategoris = Kategori::all();
         if ($request->has('search')) {
             $wisatas = Wisata::where('nama', 'LIKE', '%' . $request->search . '%')->get();
         } else {
-            $wisatas = Wisata::all();
+            $wisatas = Wisata::orderBy('created_at', 'desc')->simplePaginate(4);
         }
-        return view('beranda.beranda-search', ['WisataList' => $wisatas, 'DesaList' => $desas, 'KabupatenList' => $kabupatens, 'title' => 'Hasil Pencarian Terkait', 'keyword' => $request->search]);
+        return view('beranda.beranda-search', ['WisataList' => $wisatas, 'DesaList' => $desas, 'KabupatenList' => $kabupatens, 'KategoriList' => $kategoris, 'title' => 'Hasil Pencarian Terkait', 'keyword' => $request->search]);
     }
 
     public function filter(Request $request)

@@ -46,6 +46,7 @@ class DesaController extends Controller
             'fk_id_kabupaten' => 'required',
             'deskripsi' => 'required|string|min:50',
             'address' => 'required|string|max:100',
+            'status' => 'required'
         ]);
 
         $nm = $request->gambar;
@@ -59,6 +60,7 @@ class DesaController extends Controller
         $desas->fk_id_kabupaten = $request->fk_id_kabupaten;
         $desas->deskripsi = $request->deskripsi;
         $desas->address = $request->address;
+        $desas->status = $request->status;
         $desas->save();
 
 
@@ -114,6 +116,7 @@ class DesaController extends Controller
             'fk_id_kabupaten' => 'required',
             'deskripsi' => 'required|string|min:50',
             'address' => 'required|string|max:100',
+            'status' => 'required',
         ]);
 
         $desas = Desa::with('kabupaten')->findOrFail($id);
@@ -127,6 +130,8 @@ class DesaController extends Controller
         $desas->fk_id_kabupaten = $request->fk_id_kabupaten;
         $desas->deskripsi = $request->deskripsi;
         $desas->address = $request->address;
+        $desas->address = $request->address;
+        $desas->status = $request->status;
         $desas->save();
 
         if ($desas) {
@@ -158,4 +163,17 @@ class DesaController extends Controller
             return response()->json(['massege' => 'desa deleted!']);
         }
     }
+
+    // public function acc($id)
+    // {
+    //     $desas = DB::table('desas')->where('id', $id)->where('status', 'pending')->get();
+    //     $desas->status = 'approve';
+
+    //     $desas->save();
+    //     if (DB::table('desas')->where('id', $id)->delete()) {
+    //         return redirect()->route('dashboard-index')->with(['success' => 'Status Berhasil Diperbaharui!']);
+    //         // API
+    //         return response()->json(['massege' => 'desa deleted!']);
+    //     }
+    // }
 }

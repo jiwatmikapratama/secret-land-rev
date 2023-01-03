@@ -12,10 +12,7 @@
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h2>Data Desa</h2>
-                    <form class="d-flex ms-auto">
-                        <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i></button>
-                    </form>
+
                 </div>
 
                 @if (session('success'))
@@ -40,6 +37,7 @@
                             <th scope="col">Daerah</th>
                             <th scope="col">Deskripsi</th>
                             <th scope="col">Alamat</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
 
                         </tr>
@@ -57,7 +55,10 @@
                                 <td style="max-height: 300px; max-width: 50px; overflow:hidden;white-space: nowrap;">
                                     {{ $data->deskripsi }}</td>
                                 <td>{{ $data->address }}</td>
-                                <td><a class="btn btn-warning" href="/dashboard/desa-edit/{{ $data->id }}">edit</a>
+                                <td>{{ $data->status }}</td>
+                                <td>
+                                    <a class="btn btn-warning" href="/dashboard/desa-edit/{{ $data->id }}">edit</a>
+                                    <a class="btn btn-warning" href="/dashboard/desa-edit/{{ $data->id }}">edit</a>
                                     <a class="btn btn-danger" href="/dashboard/desa/{{ $data->id }}"
                                         onclick="return confirm('Anda yakin ingin menghapus?');">delete</a>
                                 </td>
@@ -69,10 +70,6 @@
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h2>Data Wisata</h2>
-                    <form class="d-flex ms-auto">
-                        <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i></button>
-                    </form>
                 </div>
 
 
@@ -96,8 +93,12 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama }}</td>
                                 <td>
-                                    <img src="{{ asset('wisata/' . $item->gambar) }}"
-                                        style="max-height: 50px; max-width: 50px;" alt="">
+                                    {{-- @dd($item->gambar) --}}
+                                    @foreach ($item->gambar as $image)
+                                        <img src="{{ asset('wisata/' . $image) }}"
+                                            style="max-height: 50px; max-width: 50px;" alt="multiple image"
+                                            class="w-20 h-20 border border-blue-600">
+                                    @endforeach
                                 </td>
                                 <td>{{ $item->desa->nama }}</td>
                                 <td style="max-height: 300px; max-width: 50px; overflow:hidden;white-space: nowrap;">

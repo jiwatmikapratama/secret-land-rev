@@ -33,7 +33,7 @@
                                         <div class="form-group">
                                             <label>Gambar</label>
                                             <input type="file" class="form-control @error('gambar') is-invalid @enderror"
-                                                name="gambar" value="{{ $WisataList->gambar }}" required>
+                                                name="gambar[]" multiple value="{{ $WisataList->gambar }}" required>
 
                                             @error('gambar')
                                                 <div class="alert alert-danger">{{ $message }}</div>

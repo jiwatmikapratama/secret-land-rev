@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreign('fk_id_kategori')->references('id')->on('kategoris');
             $table->text('deskripsi');
             $table->text('address')->nullable();
+            $table->enum('status', ['pending', 'approve']);
         });
     }
 

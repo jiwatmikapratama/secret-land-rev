@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreign('fk_id_kabupaten')->references('id')->on('kabupatens');
             $table->text('deskripsi');
+            $table->enum('status', ['pending', 'approve']);
             $table->text('address')->nullable();
         });
     }

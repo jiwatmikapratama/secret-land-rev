@@ -19,6 +19,6 @@ class Desa extends Model
 
     public function wisata()
     {
-        return $this->hasMany(Wisata::class, 'fk_id_wisata', 'id');
+        return $this->hasMany(Wisata::class, 'fk_id_desa', 'id');
     }
 }

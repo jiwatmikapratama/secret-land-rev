@@ -15,22 +15,15 @@
                     <input type="search" name="search" class="form-control2" placeholder="search">
                     <button class="btn btn-outline-light" type="submit"><i class="fa fa-search"></i></button>
                 </form>
-                <form action="">
-
-                    <select name="" id="" class="form-control2" placeholder="Keyword search">
-                        <option value="{{ old('fk_id_kabupaten') }}">--Pilih--</option>
-
-                        @foreach ($KabupatenList as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                        @endforeach
-                        <input type="submit" class="btn btn-primary" placeholder="search">
-                </form>
                 <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
 
                     <div class="row" data-aos="fade-up">
-                        <div class="col">
-                            <button class="btn"></button>
-                        </div>
+                        @foreach ($KategoriList as $kategori)
+                            <div class="col">
+                                <button class="btn tombol"><a href="">{{ $kategori->nama }}</a></button>
+                            </div>
+                        @endforeach
+
                         <div class="col">
 
                         </div>
@@ -39,7 +32,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </header>
@@ -67,9 +59,9 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="col-md-3 pull-right mt-3" style="">
+                {{-- <div class="col-md-3 pull-right mt-3" style="">
                     {{ $WisataList->links() }}
-                </div>
+                </div> --}}
             </div>
 
             @include('partials.break')
@@ -144,43 +136,16 @@
 
                 </div>
 
-                <div class="row" data-aos="fade-up" data-aos-delay="100">
-
-                    <div class="g col-lg-6 ">
-                        <iframe class="mb-4 mb-lg-0"
-                            src="https://www.google.com/maps/embed?pb=!1m19!1m8!1m3!1d63196.35783373603!2d115.3133908!3d-8.1246437!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x2dd1ed1c15eb2017%3A0x5030bfbca830b40!2sBondalem%20Tejakula%20Buleleng%20Regency%20Bali!3m2!1d-8.1246437!2d115.3133908!5e0!3m2!1sid!2sid!4v1659859260771!5m2!1sid!2sid"
-                            frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+                <d<div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-md-5 mt-5">
+                        <a href="/beranda/daftar-wisata" class="button rounded-pill shadow tebel-sedang">DAFTAR WISATA YANG BELUM
+                            ADA</a>
                     </div>
-
-                    <div class="g col-lg-6">
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                            <div class="row">
-                                <div class="col form-group">
-                                    <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Your Name" required>
-                                </div>
-                                <div class="col form-group">
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Your Email" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="subject" id="subject"
-                                    placeholder="Subject" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                            </div>
-                            <div class="my-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div>
-                            <div class="text-center"><button type="submit">Send Message</button></div>
-                        </form>
+                    <div class="col-md-5 mt-5">
+                        <a href="/beranda/daftar-desa" class="button rounded-pill shadow tebel-sedang">DAFTAR DESA YANG BELUM
+                            ADA</a>
                     </div>
-
-                </div>
         </div>
+    </div>
     </div>
 @endsection

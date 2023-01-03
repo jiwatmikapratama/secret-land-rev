@@ -19,7 +19,7 @@
                         mengembangkan atau mempublikasikan desanya agar dikenal luas seNusantara maupun Internasional.
                     </p>
                 </div>
-                <div class="tombol mt-5">
+                <div class="mt-5">
                     <a href="/beranda" class="button rounded-pill shadow tebel-sedang">JELAJAHI</a>
                 </div>
             </div>

@@ -74,6 +74,18 @@
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select id="status"
+                                                class="form-control @error('status') is-invalid @enderror" name="status">
+                                                <option value="{{ old('status') }}">--Pilih--</option>
+                                                <option value="approve" selected>Disetujui</option>
+                                                <option value="pending">Dalam Proses</option>
+                                            </select>
+                                            @error('status')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                         <br>
                                         <br><br>
                                         <div class="form-group">

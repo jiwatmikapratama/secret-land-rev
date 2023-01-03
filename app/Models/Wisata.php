@@ -11,6 +11,10 @@ class Wisata extends Model
     protected $guarded = [];
     protected $table = 'objek_wisatas';
 
+    protected $casts = [
+        'gambar' => 'array'
+    ];
+
     public function desa()
     {
         return $this->belongsTo(Desa::class, 'fk_id_desa', 'id');
@@ -18,6 +22,6 @@ class Wisata extends Model
 
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'fk_id_wisata', 'id');
+        return $this->belongsTo(Kategori::class, 'fk_id_kategori', 'id');
     }
 }

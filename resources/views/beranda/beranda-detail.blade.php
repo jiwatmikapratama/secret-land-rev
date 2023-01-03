@@ -13,15 +13,39 @@
                             @foreach ($DesaList->wisata as $das)
                                 <h3>{{ $loop->iteration }}. Wisata {{ $das->nama }}</h3>
 
-                                <img src="{{ asset('wisata/' . $das->gambar) }}" style="height: auto; width: 100%;"
-                                    alt="">
-
-                                <br><br>
+                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        @foreach ($das->gambar as $image)
+                                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                                <img class="d-block w-100" src="{{ asset('/wisata/' . $image) }}"
+                                                    style="max-height: 2000px; max-width: ;" alt="multiple image"
+                                                    class="w-20 h-20 border border-blue-600">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                        data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                        data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
                                 <p style="text-align: justify;">{{ $das->deskripsi }}</p>
                             @endforeach
                         </div>
                     </div>
                 </div>
+
+            </div>
+            <div class="col-md-4 px-3">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15784.825320104805!2d115.20077264999999!3d-8.47930815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd223a2370ad711%3A0x67e24a91a80b66ec!2sGriya%20Dauh%20Manuaba%20Cau%20Belayu!5e0!3m2!1sid!2sid!4v1672745363703!5m2!1sid!2sid"
+                    width="100%" height="160" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" frameborder="0"></iframe>
             </div>
         </div>
     </div>

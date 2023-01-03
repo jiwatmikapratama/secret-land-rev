@@ -34,7 +34,7 @@
                                         <div class="form-group">
                                             <label>Gambar</label>
                                             <input type="file" class="form-control @error('gambar') is-invalid @enderror"
-                                                name="gambar" value="{{ old('gambar') }}" required>
+                                                name="gambar[]" multiple value="{{ old('gambar') }}" required>
                                             @error('gambar')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -86,6 +86,18 @@
                                                 value="{{ old('address') }}" required>
 
                                             @error('address')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select id="status"
+                                                class="form-control @error('status') is-invalid @enderror" name="status">
+                                                <option value="{{ old('status') }}">--Pilih--</option>
+                                                <option value="approve" selected>Disetujui</option>
+                                                <option value="pending">Dalam Proses</option>
+                                            </select>
+                                            @error('status')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
