@@ -42,10 +42,8 @@
 
             </div>
             <div class="col-md-4 px-3">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15784.825320104805!2d115.20077264999999!3d-8.47930815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd223a2370ad711%3A0x67e24a91a80b66ec!2sGriya%20Dauh%20Manuaba%20Cau%20Belayu!5e0!3m2!1sid!2sid!4v1672745363703!5m2!1sid!2sid"
-                    width="100%" height="160" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade" frameborder="0"></iframe>
+                <iframe src="{{ $DesaList->address }}" width="100%" height="160" style="border:0;" allowfullscreen=""
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" frameborder="0"></iframe>
             </div>
         </div>
     </div>

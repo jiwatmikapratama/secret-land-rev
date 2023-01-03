@@ -42,7 +42,8 @@
                     <div class="row" data-aos="fade-up">
                         @foreach ($KategoriList as $kategori)
                             <div class="col">
-                                <button class="btn tombol"><a href="">{{ $kategori->nama }}</a></button>
+                                <button class="btn tombol"><a
+                                    href="/beranda-kategori-wisata/{{ $kategori->id }}">{{ $kategori->nama }}</a></button>
                             </div>
                         @endforeach
 

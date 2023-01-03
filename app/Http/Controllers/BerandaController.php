@@ -106,20 +106,19 @@ class BerandaController extends Controller
         return view('beranda.beranda-search', ['WisataList' => $wisatas, 'DesaList' => $desas, 'KabupatenList' => $kabupatens, 'KategoriList' => $kategoris, 'title' => 'Hasil Pencarian Terkait', 'keyword' => $request->search]);
     }
 
-    public function filter(Request $request)
+    public function filter($id)
     {
-        $kabupatens = Kabupaten::all();
-        if ($request->has('kabupaten_filter')) {
-            $desas = Desa::where('fk_id_kabupaten', $request->kabupaten_filter)->get();
-        } else {
-            $desas = Desa::all();
-        }
-        return view('beranda.beranda-search', ['DesaList' => $desas, 'KabupatenList' => $kabupatens, 'title' => 'Hasil Pencarian Terkait', 'keyword' => $request->search]);
+        // $wisatas = Wisata::with(['kategori'])->findOrFail($id);
+        // $kategoris = Kategori::all();
+
+        $wisatas = Wisata::orderBy('created_at', 'desc')->where('status', 'approve')->where('fk_id_kategori', $id)->simplePaginate(4);
+        $kategoris = Kategori::all();
+        return view('beranda.beranda-kategori-wisata', ['WisataList' => $wisatas, 'KategoriList' => $kategoris, 'title' => 'Kategori']);
     }
 
-    public function kabupaten(Request $request, $id)
-    {
-        $kabupatens = Kabupaten::with(['desa'])->findOrFail($id);
-        return view('beranda.index', ['KabupatenList' => $kabupatens, 'title' => 'Beranda']);
-    }
+    // public function kabupaten(Request $request, $id)
+    // {
+    //     $kabupatens = Kabupaten::with(['desa'])->findOrFail($id);
+    //     return view('beranda.index', ['KabupatenList' => $kabupatens, 'title' => 'Beranda']);
+    // }
 }
