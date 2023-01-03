@@ -51,6 +51,7 @@ Route::get('/dashboard/desa-edit/{id}', [DesaController::class, 'edit'])->name('
 Route::put('/dashboard/desa/{id}', [DesaController::class, 'update']);
 Route::get('/dashboard/desa/{id}', [DesaController::class, 'destroy'])->name('desa-delete');
 Route::get('/dashboard/desa/{id}', [DesaController::class, 'destroy'])->name('desa-delete');
+Route::get('/dashboard/desa/approve/{id}', [DesaController::class, 'approve'])->name('desa-approve');
 
 // Admin data wisata
 Route::get('/wisata-add', [WisataController::class, 'create'])->name('wisata-add')->middleware('auth');
@@ -58,6 +59,7 @@ Route::post('/objek_wisata', [WisataController::class, 'store']);
 Route::get('/dashboard/wisata-edit/{id}', [WisataController::class, 'edit'])->name('wisata-edit')->middleware('auth');
 Route::put('/dashboard/wisata/{id}', [WisataController::class, 'update']);
 Route::get('/dashboard/wisata/{id}', [WisataController::class, 'destroy'])->name('wisata-delete');
+Route::get('/dashboard/wisata/approve/{id}', [WisataController::class, 'approve'])->name('desa-approve');
 
 // User input wisata dan desa
 Route::get('/daftar-wisata', [UserController::class, 'createWisata'])->name('user-daftar-wisata')->middleware('auth');

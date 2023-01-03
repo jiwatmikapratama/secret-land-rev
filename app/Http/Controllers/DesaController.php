@@ -164,16 +164,9 @@ class DesaController extends Controller
         }
     }
 
-    // public function acc($id)
-    // {
-    //     $desas = DB::table('desas')->where('id', $id)->where('status', 'pending')->get();
-    //     $desas->status = 'approve';
-
-    //     $desas->save();
-    //     if (DB::table('desas')->where('id', $id)->delete()) {
-    //         return redirect()->route('dashboard-index')->with(['success' => 'Status Berhasil Diperbaharui!']);
-    //         // API
-    //         return response()->json(['massege' => 'desa deleted!']);
-    //     }
-    // }
+    public function approve($id)
+    {
+        DB::table('desas')->where('id', $id)->update(['status' => 'approve']);
+        return redirect()->route('dashboard-index')->with(['success' => 'Data Desa Disetujui!']);
+    }
 }

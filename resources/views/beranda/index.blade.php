@@ -4,6 +4,18 @@
     {{-- slide --}}
     <header class="flex">
         <div class="container"><br><br><br>
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @elseif(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @else
+            @endif
             <div class="header-title">
                 <h1>Cari Suasana Baru</h1>
                 <p>Kami menawarkan solusi yang menjembatani Instansi daerah lebih tepatnya desa yang ingin
@@ -56,19 +68,21 @@
                 <hr>
                 <div class="row d" data-aos="fade-up">
                     @foreach ($WisataList as $wisata)
-                        <div class="col">
-                            <a href="beranda-detail/{{ $wisata->id }}">
-                                <div class="card2">
-                                    <img src="{{ asset('wisata/' . json_decode($wisata->gambar)[0]) }}" class="card-image2"
-                                        alt="...">
-                                    <div class="card-body2">
-                                        <h5 class="card-titlet" style="font-weight:bold;"> {{ $wisata->nama }}</h5>
-                                        <h5 style="font-size:15px;">{{ $wisata->desa->nama }}</h5>
-                                        {{-- <p class="card-text">{{ Str::of($wisata->deskripsi)->limit(20) }}</p> --}}
+                        @if ($wisata->status == 'approve')
+                            <div class="col">
+                                <a href="beranda-detail/{{ $wisata->id }}">
+                                    <div class="card2">
+                                        <img src="{{ asset('wisata/' . json_decode($wisata->gambar)[0]) }}"
+                                            class="card-image2" alt="...">
+                                        <div class="card-body2">
+                                            <h5 class="card-titlet" style="font-weight:bold;"> {{ $wisata->nama }}</h5>
+                                            <h5 style="font-size:15px;">{{ $wisata->desa->nama }}</h5>
+                                            {{-- <p class="card-text">{{ Str::of($wisata->deskripsi)->limit(20) }}</p> --}}
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
+                        @endif
                     @endforeach
 
 

@@ -102,7 +102,8 @@ class WisataController extends Controller
     {
         $wisatas = Wisata::with('desa')->findOrFail($id);
         $desas = Desa::where('id', '!=', $wisatas->fk_id_desa)->get(['id', 'nama']);
-        return view('admin.wisata.wisata-edit', ['WisataList' => $wisatas, 'DesaList' => $desas, "title" => "Edit Wisata",]);
+        $kategoris = Kategori::all();
+        return view('admin.wisata.wisata-edit', ['WisataList' => $wisatas, 'DesaList' => $desas, 'KategoriList' => $kategoris, "title" => "Edit Wisata",]);
     }
 
     /**
@@ -169,5 +170,11 @@ class WisataController extends Controller
         if (DB::table('objek_wisatas')->where('id', $id)->delete()) {
             return redirect()->route('dashboard-index')->with(['success' => 'Data Wisata Berhasil Dihapus!']);
         }
+    }
+
+    public function approve($id)
+    {
+        DB::table('objek_wisatas')->where('id', $id)->update(['status' => 'approve']);
+        return redirect()->route('dashboard-index')->with(['success' => 'Data Wisata Disetujui!']);
     }
 }

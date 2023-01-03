@@ -1,6 +1,7 @@
 @extends('layouts.user.user-main')
 
 @section('content')
+    @include('partials.break')
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -12,7 +13,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="desa" enctype="multipart/form-data">
+                            <form method="POST" action="daftar-desa" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label>Nama Desa</label>
@@ -66,7 +67,7 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group d-none">
                                     <label>Status</label>
                                     <select id="status" class="form-control @error('status') is-invalid @enderror"
                                         name="status">
@@ -82,7 +83,7 @@
                                 <br><br>
                                 <div class="form-group">
                                     <button class="btn btn-primary" type="submit">Simpan</button>
-                                    <a href="/dashboard" class="btn btn-secondary">Batal</a>
+                                    <a href="/beranda" class="btn btn-secondary">Batal</a>
                                 </div>
                             </form>
                         </div>

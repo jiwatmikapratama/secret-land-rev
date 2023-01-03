@@ -89,7 +89,7 @@
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group d-none">
                                             <label>Status</label>
                                             <select id="status"
                                                 class="form-control @error('status') is-invalid @enderror" name="status">

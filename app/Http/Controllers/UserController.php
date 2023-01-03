@@ -45,7 +45,7 @@ class UserController extends Controller
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'fk_id_kabupaten' => 'required',
             'deskripsi' => 'required|string|min:50',
-            'address' => 'required|string|max:100',
+            'address' => 'required|string',
             'status' => 'required'
         ]);
 
@@ -63,7 +63,6 @@ class UserController extends Controller
         $desas->status = $request->status;
         $desas->save();
 
-
         if ($desas) {
             return redirect()->route('beranda-index')->with(['success' => 'Data Desa Berhasil Ditambahkan!']);
         } else {
@@ -78,27 +77,34 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required|max:20',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'gambar' => 'required',
+            'gambar.*' => 'image|max:2048',
             'fk_id_desa' => 'required',
+            'fk_id_kategori' => 'required',
             'deskripsi' => 'required|string|min:50',
-            'address' => 'required|string|max:100',
+            'address' => 'required|string',
             'status' => 'required'
         ]);
 
-        $nm = $request->gambar;
-        $nameFile = $nm->getClientOriginalName();
+        if ($request->hasfile('gambar')) {
+
+            foreach ($request->file('gambar') as $image) {
+                $name = $image->getClientOriginalName();
+                $image->move(public_path() . '/wisata/', $name);
+                $data[] = $name;
+            }
+        }
 
         $wisatas = new Wisata;
         $wisatas->nama = $request->nama;
-        $wisatas->gambar = $nameFile;
+        $wisatas->gambar = json_encode($data);
 
-        $nm->move(public_path() . '/wisata', $nameFile);
         $wisatas->fk_id_desa = $request->fk_id_desa;
+        $wisatas->fk_id_kategori = $request->fk_id_kategori;
         $wisatas->deskripsi = $request->deskripsi;
         $wisatas->address = $request->address;
         $wisatas->status = $request->status;
         $wisatas->save();
-
 
         if ($wisatas) {
             return redirect()->route('beranda-index')->with(['success' => 'Data Wisata Berhasil Didaftarkan!']);

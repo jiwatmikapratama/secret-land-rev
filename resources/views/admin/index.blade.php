@@ -54,10 +54,16 @@
                                 <td>{{ $data->kabupaten->nama }}</td>
                                 <td style="max-height: 300px; max-width: 50px; overflow:hidden;white-space: nowrap;">
                                     {{ $data->deskripsi }}</td>
-                                <td>{{ $data->address }}</td>
-                                <td>{{ $data->status }}</td>
+                                <td style="max-height: 300px; max-width: 50px; overflow:hidden;white-space: nowrap;">
+                                    {{ $data->address }}</td>
+                                <td class="badge {{ $data->status == 'pending' ? 'bg-warning' : 'bg-success' }} "
+                                    style="color: {{ $data->status == 'pending' ? 'black' : 'white' }} ;">
+                                    {{ $data->status }}
+
+                                </td>
                                 <td>
-                                    <a class="btn btn-warning" href="/dashboard/desa-edit/{{ $data->id }}">edit</a>
+                                    <a class="btn btn-success" href="/dashboard/desa/approve/{{ $data->id }}"
+                                        onclick="return confirm('Anda yakin ingin menyetujui?');">approve</a>
                                     <a class="btn btn-warning" href="/dashboard/desa-edit/{{ $data->id }}">edit</a>
                                     <a class="btn btn-danger" href="/dashboard/desa/{{ $data->id }}"
                                         onclick="return confirm('Anda yakin ingin menghapus?');">delete</a>
@@ -83,6 +89,7 @@
                             <th scope="col">Desa</th>
                             <th scope="col">Deskripsi</th>
                             <th scope="col">Alamat</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
 
                         </tr>
@@ -106,8 +113,17 @@
                                 <td>{{ $item->desa->nama }}</td>
                                 <td style="max-height: 300px; max-width: 50px; overflow:hidden;white-space: nowrap;">
                                     {{ $item->deskripsi }}</td>
-                                <td>{{ $item->address }}</td>
-                                <td><a class="btn btn-warning" href="/dashboard/wisata-edit/{{ $item->id }}">edit</a>
+                                <td style="max-height: 300px; max-width: 50px; overflow:hidden;white-space: nowrap;">
+                                    {{ $item->address }}</td>
+                                <td class="badge {{ $item->status == 'pending' ? 'bg-warning' : 'bg-success' }} "
+                                    style="color: {{ $item->status == 'pending' ? 'black' : 'white' }} ;">
+                                    {{ $item->status }}
+
+                                </td>
+                                <td>
+                                    <a class="btn btn-success" href="/dashboard/wisata/approve/{{ $item->id }}"
+                                        onclick="return confirm('Anda yakin ingin menyetujui?');">approve</a>
+                                    <a class="btn btn-warning" href="/dashboard/wisata-edit/{{ $item->id }}">edit</a>
                                     <a class="btn btn-danger" href="/dashboard/wisata/{{ $item->id }}"
                                         onclick="return confirm('Anda yakin ingin menghapus?');">delete</a>
                                 </td>

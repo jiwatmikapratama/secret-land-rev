@@ -64,7 +64,7 @@
                                                 name="fk_id_kategori" required>
                                                 <option value="{{ $WisataList->kategori->id }}">
                                                     {{ $WisataList->kategori->nama }}</option>
-                                                @foreach ($kategoriList as $item)
+                                                @foreach ($KategoriList as $item)
                                                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                                 @endforeach
                                             </select>
@@ -90,6 +90,19 @@
                                                 value="{{ $WisataList->address }}" required>
 
                                             @error('address')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group d-none">
+                                            <label>Status</label>
+                                            <select id="status"
+                                                class="form-control @error('status') is-invalid @enderror" name="status">
+                                                <option value="{{ old('status') }}">--Pilih--</option>
+                                                <option value="approve" selected>Disetujui</option>
+                                                <option value="pending">Dalam Proses</option>
+                                            </select>
+                                            @error('status')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>

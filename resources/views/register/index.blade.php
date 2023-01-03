@@ -7,9 +7,14 @@
                 @csrf
                 {{-- <input type="hidden" name="role" value="umum"> --}}
                 <div class="row justify-content-center">
+
                     <div class="col-sm-7">
-                        <img class="mb-2" src="/img/logo.png" alt="" width="150">
+                        <a href="/">
+                            <img class="mb-2" src="/img/logo.png" alt="" width="150">
+                        </a>
                     </div>
+
+
                 </div>
                 <h1 class="h4 mb-2 fw-normal text-center">Get your Nice spot Village</h1>
                 <br>
