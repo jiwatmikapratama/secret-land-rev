@@ -15,7 +15,7 @@
 
                                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner">
-                                        @foreach ($das->gambar as $image)
+                                        @foreach (json_decode($das->gambar) as $image)
                                             <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                                                 <img class="d-block w-100" src="{{ asset('/wisata/' . $image) }}"
                                                     style="max-height: 2000px; max-width: ;" alt="multiple image"

@@ -45,7 +45,7 @@ class DesaController extends Controller
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'fk_id_kabupaten' => 'required',
             'deskripsi' => 'required|string|min:50',
-            'address' => 'required|string|max:100',
+            'address' => 'required|string',
             'status' => 'required'
         ]);
 
@@ -115,8 +115,8 @@ class DesaController extends Controller
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'fk_id_kabupaten' => 'required',
             'deskripsi' => 'required|string|min:50',
-            'address' => 'required|string|max:100',
-            'status' => 'required',
+            'address' => 'required|string',
+            'status' => 'required'
         ]);
 
         $desas = Desa::with('kabupaten')->findOrFail($id);

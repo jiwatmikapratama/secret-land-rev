@@ -49,7 +49,7 @@ class WisataController extends Controller
             'fk_id_desa' => 'required',
             'fk_id_kategori' => 'required',
             'deskripsi' => 'required|string|min:50',
-            'address' => 'required|string|max:100',
+            'address' => 'required|string',
             'status' => 'required'
         ]);
 
@@ -121,7 +121,7 @@ class WisataController extends Controller
             'fk_id_desa' => 'required',
             'fk_id_kategori' => 'required',
             'deskripsi' => 'required|string|min:50',
-            'address' => 'required|string|max:100',
+            'address' => 'required|string',
             'status' => 'required'
         ]);
 

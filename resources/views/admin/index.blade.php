@@ -94,11 +94,14 @@
                                 <td>{{ $item->nama }}</td>
                                 <td>
                                     {{-- @dd($item->gambar) --}}
-                                    @foreach ($item->gambar as $image)
-                                        <img src="{{ asset('wisata/' . $image) }}"
+                                    {{-- @if (is_array($item->gambar) || is_object($item->gambar)) --}}
+                                    @foreach (json_decode($item->gambar) as $image)
+                                        <img src="{{ asset('/wisata/' . $image) }}"
                                             style="max-height: 50px; max-width: 50px;" alt="multiple image"
                                             class="w-20 h-20 border border-blue-600">
                                     @endforeach
+                                    {{-- @endif --}}
+
                                 </td>
                                 <td>{{ $item->desa->nama }}</td>
                                 <td style="max-height: 300px; max-width: 50px; overflow:hidden;white-space: nowrap;">

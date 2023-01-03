@@ -30,7 +30,7 @@
                     <div class="row" data-aos="fade-up">
                         @foreach ($KategoriList as $kategori)
                             <div class="col">
-                                <button class="btn tombol"><a href="" >{{ $kategori->nama }}</a></button>
+                                <button class="btn tombol"><a href="">{{ $kategori->nama }}</a></button>
                             </div>
                         @endforeach
 
@@ -59,7 +59,8 @@
                         <div class="col">
                             <a href="beranda-detail/{{ $wisata->id }}">
                                 <div class="card2">
-                                    <img src="{{ asset('wisata/' . $wisata->gambar[0]) }}" class="card-image2" alt="...">
+                                    <img src="{{ asset('wisata/' . json_decode($wisata->gambar)[0]) }}" class="card-image2"
+                                        alt="...">
                                     <div class="card-body2">
                                         <h5 class="card-titlet" style="font-weight:bold;"> {{ $wisata->nama }}</h5>
                                         <h5 style="font-size:15px;">{{ $wisata->desa->nama }}</h5>
